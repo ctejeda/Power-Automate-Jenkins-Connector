@@ -1,0 +1,78 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Jenkins-CustomConnector",
+    "description": "A custom Jenkins connector which utilizes the Jenkins API to interact with the Jenkins system. \nAuthor: Chris Tejeda",
+    "version": "1.0"
+  },
+  "host": "jenkins.ctejeda.com",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/crumbIssuer/api/xml": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Request Jenkins Crumb",
+        "description": "Request a Crumb from Signed in Jenkins User",
+        "operationId": "REQCRUMB",
+        "parameters": []
+      }
+    },
+    "/job/{jobname}/job/{build}/build": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Jenkins Build Job",
+        "description": "Jenkins Build Job",
+        "operationId": "BUILDJENK",
+        "parameters": [
+          {
+            "name": "jobname",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "build",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Jenkins-Crumb",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "basic-auth": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "basic-auth": []
+    }
+  ],
+  "tags": []
+}
